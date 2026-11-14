@@ -1,0 +1,23 @@
+\begin{table}[htbp]
+\centering
+\caption{Data cleaning rules and their effect}
+\label{tab:cleaning}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lcr}
+\toprule
+Rule & Action & Count \\
+\midrule
+Raw 5-minute bars, 100 stocks & -- & 18,798,744 \\
+Regular session 09:15--15:30, from Nov 2015, after listing date & Keep & 17,660,206 \\
+Zero-volume bars (stale quote, price set to missing) & Drop price & 41,063 \\
+Isolated spikes ($>$5\% move undone by next bar) & Drop price & 24 \\
+Days with fewer than 60 traded bars & Drop day & 1,455 \\
+Days with RV $=0$ (stock frozen at price band) & Drop day & 188 \\
+Overnight gaps $>35\%$ (split/bonus) in EGARCH returns & Set to 0 & 2 \\
+Stock-days in the clean panel & -- & 234,226 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape Pre-listing rows removed for IRFC, SBILIFE, HDFCLIFE and MAZDOCK. RV never uses overnight returns.}
+\end{table}

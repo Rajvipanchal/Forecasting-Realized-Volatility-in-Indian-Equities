@@ -1,0 +1,15 @@
+{\centering\textbf{Abstract}\par}\vspace{6pt}
+\noindent We forecast next-day realized volatility for 95 NIFTY~100 stocks using 5-minute NSE data
+(2016--2026) and ask whether deep learning beats the HAR benchmark, and whether the answer depends
+on liquidity. On 29,774 out-of-sample stock-days (January 2025 -- April 2026), an LSTM fed with HAR
+inputs (HAR-RV-LSTM) is the most accurate model: its QLIKE loss is 15.4\% below HAR-RV and 1.6\% below
+log-HAR, both statistically significant. It beats HAR-RV on all 95 stocks and log-HAR on 70\% of them.
+Its edge over log-HAR rises as liquidity falls, from 0.3\% (not significant) for the most liquid third
+to 3.0\% for the least liquid third. An LSTM built on EGARCH features is the weakest model, and EGARCH
+features add nothing to HAR-RV-LSTM. The gains come from calm and normal days. Correcting data errors,
+the liquidity measure and look-ahead in the EGARCH features made the benchmark much stronger and the
+neural models' advantage smaller than in our first version.
+
+\medskip
+\noindent\textbf{Keywords:} realized volatility, HAR, LSTM, EGARCH, liquidity, NSE, forecast evaluation\\
+\textbf{JEL codes:} C45, C53, C58, G17

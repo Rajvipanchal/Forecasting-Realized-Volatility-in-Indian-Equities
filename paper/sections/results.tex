@@ -1,0 +1,125 @@
+\section{Results: Overall Accuracy}
+
+\input{tables/overall.tex}
+
+\textbf{Ranking.} HAR-RV-LSTM has the lowest test loss on all three measures (Table~\ref{tab:overall},
+Figure~\ref{fig:losses}). Its QLIKE of 0.1935 is 15.4\% below HAR-RV and 1.6\% below log-HAR.
+EGARCH-LSTM is the weakest model, 18.5\% worse than HAR-RV. The validation ranking is the same.
+
+\textbf{Where the gain over HAR-RV comes from.} log-HAR alone removes 14.0 of the 15.4 points.
+Level HAR-RV is pulled up by a few extreme training days and over-forecasts by 21\% on average
+(Table~\ref{tab:mz}). The network's own contribution, beyond working in logs, is the remaining 1.6\%.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_test_losses.pdf}
+\caption{Test-period losses of the four main models (lower is better).}
+\label{fig:losses}
+\end{figure}
+
+\textbf{Significance.} All differences with HAR-RV are significant (Table~\ref{tab:dm}). HAR-RV-LSTM
+against log-HAR: $t=2.80$, Holm $p=0.010$, and the bootstrap interval [0.0011, 0.0054] excludes zero.
+On MAE the gain is also significant ($t=4.22$); on MSE it is not ($p=0.26$), because MSE is driven by a
+handful of extreme days. Adding EGARCH features to HAR-RV-LSTM changes nothing ($t=0.24$, $p=0.81$).
+
+\input{tables/dm.tex}
+
+\textbf{Stability.} The gain builds steadily through the test period rather than coming from a few days
+(Figure~\ref{fig:cum}): against log-HAR it is flat until June 2025 and rises after. Each of the three
+seeds beats log-HAR on its own (test QLIKE 0.1926--0.1959 against 0.1965; Annex Table~\ref{tab:seeds}).
+By stock, HAR-RV-LSTM beats HAR-RV on all 95 stocks and log-HAR on 67 of 95 (70\%).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_cumulative_qlike.pdf}
+\caption{Cumulative daily QLIKE difference against HAR-RV-LSTM over the test period. A rising line means
+HAR-RV-LSTM is ahead.}
+\label{fig:cum}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_forecast_vs_actual.pdf}
+\caption{Average realized volatility across the 95 stocks and the average forecasts (annualized).}
+\label{fig:fva}
+\end{figure}
+
+\textbf{Calibration.} HAR-RV sits visibly above realized volatility in the calm second half of 2025
+(Figure~\ref{fig:fva}). In Mincer--Zarnowitz regressions HAR-RV-LSTM explains the most variation
+($R^2=0.470$ against 0.462 for log-HAR) and has the smallest average bias (6\%).
+
+\input{tables/mz.tex}
+
+\section{Results: Liquidity}
+
+\input{tables/liquidity.tex}
+
+HAR-RV-LSTM is the best model in every liquidity group (Table~\ref{tab:liquidity},
+Figure~\ref{fig:liqq}). Its gain over log-HAR rises as liquidity falls: 0.3\% in the most liquid third
+(not significant, $t=0.38$), 1.4\% in the middle third ($t=2.43$) and 3.0\% in the least liquid third
+($t=3.96$). Across stocks the gain is positively correlated with the illiquidity rank (Spearman 0.29;
+Figure~\ref{fig:perstock}). This supports H1: the network helps most where RV is noisiest and a linear
+model fits worst. For the most liquid stocks, log-HAR is already as good.
+
+EGARCH-LSTM falls further behind as liquidity falls (QLIKE 0.248 to 0.309): daily returns describe the
+volatility of thinly traded stocks particularly poorly.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_liquidity_qlike.pdf}
+\caption{Test QLIKE by liquidity group.}
+\label{fig:liqq}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_per_stock_gain.pdf}
+\caption{Per-stock QLIKE gain of HAR-RV-LSTM over log-HAR against liquidity rank.}
+\label{fig:perstock}
+\end{figure}
+
+\section{Results: Market Regimes and Robustness}
+
+\input{tables/regimes.tex}
+
+\textbf{Regimes.} Using cut-offs from the training years (which include COVID-19), the test period
+contains only calm (253 days) and normal (61 days) markets. The LSTM gains 1.8\% over log-HAR in calm
+markets and 0.7\% in normal ones (Table~\ref{tab:regimes}). Sorting by the realized outcome shows the
+other side: on the third of days with the highest RV, HAR-RV-LSTM is 3.9\% \emph{worse} than log-HAR,
+and HAR-RV is best because it over-forecasts. The LSTM wins on ordinary days and gives some of it back
+on spikes, in line with \citet{rahimikia2020}.
+
+\input{tables/subperiods.tex}
+
+\textbf{Sub-periods and extreme days.} HAR-RV-LSTM is best in three of four sub-periods; in January--April
+2025, which includes the April tariff shock, log-HAR is marginally better (0.2010 against 0.2018).
+Removing the top 1\% of RV days widens the gain over log-HAR to 2.3\% (Table~\ref{tab:subperiods}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_example_stocks.pdf}
+\caption{Realized and forecast volatility for a highly liquid (Reliance) and a less liquid (Trent) stock.}
+\label{fig:examples}
+\end{figure}
+
+\section{What Changed from the First Version}
+\label{sec:versions}
+
+\input{tables/versions.tex}
+
+A first version of the project reported a 19.1\% QLIKE gain for HAR-RV-LSTM and a 6.6\% gain for
+EGARCH-LSTM over HAR-RV. A code review found three problems:
+\begin{enumerate}
+\item \textbf{Dirty RV.} RV included the overnight gap and bad prints (VBL on 14 June 2023 jumped from 322
+to 644 and back within ten minutes). These spikes inflated level-HAR errors most. Cleaning cut HAR-RV's
+test QLIKE from 0.423 to 0.229.
+\item \textbf{Liquidity groups.} The slope-based measure divided signed volume by its own mean, which is
+close to zero and differs across stocks, so the ranking was close to random (ICICI Bank ``Medium'',
+Infosys ``Low''). Only 42\% of stocks keep their group under the corrected Amihud measure.
+\item \textbf{EGARCH look-ahead.} EGARCH was estimated on 2016--2026, so its test-period features used
+parameters fitted on test data. With training-only parameters, EGARCH-LSTM moves from 6.6\% better to
+18.5\% worse than HAR-RV.
+\end{enumerate}
+The headline survives: HAR-RV-LSTM is still the best model. Its advantage is smaller and better
+understood: most of it is the log transformation, and the true network gain is concentrated in less
+liquid stocks.

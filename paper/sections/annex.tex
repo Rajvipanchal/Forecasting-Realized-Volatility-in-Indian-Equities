@@ -1,0 +1,68 @@
+\section*{Annex A. Additional Results}
+\addcontentsline{toc}{section}{Annex A. Additional Results}
+\floatplacement{table}{H}\floatplacement{figure}{H}
+
+\input{tables/topdays.tex}
+\input{tables/seeds.tex}
+\input{tables/winrates.tex}
+\input{tables/harcoef.tex}
+\input{tables/egarch.tex}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_training_curves.pdf}
+\caption{Training (dashed) and validation (solid) QLIKE by epoch, three seeds per model.}
+\label{fig:training}
+\end{figure}
+
+\input{tables/perstock.tex}
+
+\clearpage
+\section*{Annex B. Project Structure and Reproduction}
+\addcontentsline{toc}{section}{Annex B. Project Structure and Reproduction}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Folder / file & Content \\
+\midrule
+\texttt{src/volforecast/} & All code: \texttt{config.py} (settings), \texttt{data\_pipeline.py}, \texttt{har.py},
+\texttt{egarch.py}, \texttt{lstm.py}, \texttt{evaluation.py}, \texttt{plotting.py} \\
+\texttt{notebooks/01--06} & Data cleaning and liquidity; HAR benchmarks; EGARCH features; HAR-RV-LSTM;
+EGARCH-LSTM and ablation; model comparison \\
+\texttt{data\_processed/} & Clean daily panel, EGARCH features, liquidity groups, universe \\
+\texttt{results/} & Forecasts for every stock-day, all tables (CSV), trained network weights \\
+\texttt{figures/} & All charts \\
+\texttt{paper/} & This paper; \texttt{make\_tables.py} rebuilds every table from \texttt{results/tables} \\
+\bottomrule
+\end{tabularx}
+
+Raw data (100 files, about 1 GB) are kept outside the project in \texttt{../data}. Running notebooks
+01 to 06 in order reproduces every number in the paper.
+
+\section*{Annex C. Code Excerpts}
+\addcontentsline{toc}{section}{Annex C. Code Excerpts}
+
+\textbf{Removing isolated spikes} (\texttt{data\_pipeline.py})
+\lstinputlisting{code/remove_bad_ticks.py}
+
+\textbf{Liquidity groups from training years only} (\texttt{data\_pipeline.py})
+\lstinputlisting{code/liquidity_groups.py}
+
+\textbf{Splits assigned by target date} (\texttt{data\_pipeline.py})
+\lstinputlisting{code/split_by_target_date.py}
+
+\textbf{HAR and log-HAR regression} (\texttt{har.py})
+\lstinputlisting{code/fit_predict.py}
+
+\textbf{EGARCH without look-ahead} (\texttt{egarch.py})
+\lstinputlisting{code/egarch_features.py}
+
+\textbf{Network and loss} (\texttt{lstm.py})
+\lstinputlisting{code/VolatilityLSTM.py}
+\lstinputlisting{code/QLIKELoss.py}
+
+\textbf{Training with early stopping} (\texttt{lstm.py})
+\lstinputlisting{code/train_one_seed.py}
+
+\textbf{Panel Diebold--Mariano test} (\texttt{evaluation.py})
+\lstinputlisting{code/dm_test.py}

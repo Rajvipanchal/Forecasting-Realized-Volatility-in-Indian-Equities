@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,float,graphicx}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[authoryear,round]{natbib}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\graphicspath{{../figures/}{figures/}}
+\setlist{itemsep=2pt,topsep=3pt}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\itshape Realized volatility forecasting, Indian equities}
+\fancyhead[R]{\small\itshape Guntur \& Panchal (2026)}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{14pt}
+\setlength{\floatsep}{10pt plus 2pt}
+\setlength{\textfloatsep}{12pt plus 2pt}
+\setlength{\intextsep}{10pt plus 2pt}
+\renewcommand{\floatpagefraction}{0.75}
+\let\oldsection\section
+\renewcommand{\section}{\FloatBarrier\needspace{6\baselineskip}\oldsection}
+\definecolor{codebg}{HTML}{F6F6F4}
+\lstset{language=Python,basicstyle=\ttfamily\scriptsize,backgroundcolor=\color{codebg},
+  frame=single,rulecolor=\color{gray!40},breaklines=true,columns=fullflexible,
+  keywordstyle=\color{blue!60!black},commentstyle=\color{gray},stringstyle=\color{teal!70!black},
+  showstringspaces=false,aboveskip=4pt,belowskip=4pt}
+
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{2.2cm}
+{\LARGE\bfseries Forecasting Realized Volatility of Indian Equities\par}
+\vspace{6pt}
+{\Large HAR-RV, EGARCH and LSTM Models across Liquidity Groups\par}
+\vspace{14pt}
+{\large 95 NIFTY 100 stocks $\cdot$ 5-minute NSE data $\cdot$ January 2016 -- April 2026\par}
+\vspace{1.6cm}
+{\large Partha Guntur \quad and \quad Rajvi Panchal\par}
+\vspace{6pt}
+M.Sc. Quantitative Finance, Ahmedabad University\par
+AI Lab Project, Category 2: Research-Based\par
+\vspace{10pt}
+November 2026\par
+\vspace{1.4cm}
+\begin{minipage}{0.9\textwidth}\small\setlength{\parskip}{4pt}
+\input{sections/abstract}
+\end{minipage}
+\vfill
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\input{sections/intro}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\clearpage
+\appendix
+\input{sections/annex}
+\end{document}

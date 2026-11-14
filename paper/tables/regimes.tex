@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Test QLIKE by market regime}
+\label{tab:regimes}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lrrrrr}
+\toprule
+Regime & HAR-RV & log-HAR & HAR-RV-LSTM & EGARCH-LSTM & LSTM gain vs log-HAR (\%) \\
+\midrule
+\multicolumn{6}{l}{\emph{Ex ante: market average RV$_{22}$ on day $t$, training-period terciles}}\\
+Calm (253 days) & 0.2344 & 0.1971 & \textbf{0.1936} & 0.2825 & 1.8 \\
+Normal (61 days) & 0.2043 & 0.1944 & \textbf{0.1929} & 0.2220 & 0.7 \\
+\midrule
+\multicolumn{6}{l}{\emph{Ex post: realized RV of the target day, test terciles (descriptive)}}\\
+Low RV & 0.3096 & 0.2043 & \textbf{0.1913} & 0.3642 & 6.4 \\
+Medium RV & 0.1345 & 0.1043 & \textbf{0.0971} & 0.1814 & 6.8 \\
+High RV & \textbf{0.2417} & 0.2810 & 0.2920 & 0.2669 & $-$3.9 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Mincer--Zarnowitz regressions, test period: $\log RV_{t+1}=\alpha+\beta\log\hat h_{t+1}$}
+\label{tab:mz}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & $\alpha$ & $\beta$ & s.e.($\beta$) & $R^2$ & Mean forecast / mean RV \\
+\midrule
+HAR-RV & $-$0.815 & 0.948 & 0.017 & 0.402 & 1.210 \\
+log-HAR & $-$0.931 & 0.918 & 0.017 & 0.462 & 1.080 \\
+HAR-RV-LSTM & $-$0.775 & 0.934 & 0.018 & 0.470 & 1.059 \\
+EGARCH-LSTM & $-$2.193 & 0.790 & 0.014 & 0.348 & 1.395 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape A well-calibrated forecast has $\beta\approx1$. Standard errors clustered by date.}
+\end{table}

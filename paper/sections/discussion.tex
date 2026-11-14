@@ -1,0 +1,49 @@
+\section{Where the Research Can Be Used}
+
+\textbf{Options trading.} Almost all stocks in the sample have NSE stock options. A one-day RV forecast
+is the realized-volatility leg of the volatility risk premium: comparing it with the option's implied
+volatility indicates whether straddles or strangles are rich or cheap, and it sets the expected gamma
+P\&L of a delta-hedged position. The liquidity result matters here: for illiquid names the LSTM's edge is
+largest, and these are also the options where implied volatility is least efficient.
+
+\textbf{Risk management and margins.} Next-day volatility drives Value-at-Risk, Expected Shortfall and
+exposure limits. Brokers and clearing members can use stock-level forecasts to set margins and position
+limits; a forecast 6\% above realized on average (LSTM) is safer than one 21\% above (HAR-RV), which ties up
+capital, or one that under-reacts.
+
+\textbf{Position sizing and volatility targeting.} Scaling positions by forecast volatility improves
+risk-adjusted returns \citep{fleming2001,moreira2017}. Better forecasts on ordinary days, where this
+model gains most, translate directly into steadier risk.
+
+\textbf{Execution and market making.} Expected intraday volatility sets quoted spreads, inventory limits
+and how fast to work an order. The gain is largest in less liquid stocks, where execution cost is highest.
+
+\textbf{Surveillance.} The gap between realized and forecast RV flags unusual days (for example, the Adani
+episode in February 2023) for exchanges, regulators and risk desks.
+
+\textbf{Model choice in practice.} For the 30 or so most liquid stocks, log-HAR is as good as the LSTM and
+far simpler. A pooled LSTM pays for itself across a broad, mixed-liquidity universe. Because the model
+loses ground on spike days, it should be paired with a stress overlay rather than used alone in crises.
+
+\section{Limitations and Further Work}
+
+\begin{itemize}
+\item \textbf{One test period}, mostly calm, with no ``turbulent'' days by training standards. Results in a
+crisis may differ; re-training on a rolling window would test this.
+\item \textbf{Survivorship}: the universe is today's NIFTY~100, so stocks that dropped out are missing.
+\item \textbf{Intraday RV only}: the overnight gap is excluded from the target. A close-to-close
+volatility forecast would need an overnight component.
+\item \textbf{Inputs}: the LSTM sees only RV history. India VIX, jump and semivariance measures
+\citep{bollerslev2016}, volume and market-wide RV are natural additions.
+\item \textbf{Testing}: a Model Confidence Set \citep{hansen2011} and an economic test (option P\&L or VaR
+back-test) would complete the evaluation.
+\end{itemize}
+
+\section{Conclusion}
+
+Across 95 NSE stocks and 15 months of out-of-sample data, an LSTM fed with HAR inputs forecasts next-day
+realized volatility best: 15\% better than HAR-RV and 1.6\% better than log-HAR, both significant. The
+network's own gain is modest and concentrated in less liquid stocks and calm-to-normal markets. Models
+built only on daily returns (EGARCH-LSTM) are clearly worse, and EGARCH information adds nothing once the
+intraday history is known. Careful data cleaning and leak-free design changed the size of the results
+more than the choice of model did.

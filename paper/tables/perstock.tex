@@ -1,0 +1,63 @@
+\begin{table}[H]
+\centering
+\caption{Test QLIKE for every stock, ordered by liquidity rank}
+\label{tab:perstock}
+\scriptsize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{rlcrrr|rlcrrr}
+\toprule
+\# & Stock & L & log-HAR & LSTM & Gain\% & \# & Stock & L & log-HAR & LSTM & Gain\% \\
+\midrule
+1 & RELIANCE & H & 0.177 & 0.179 & $-$0.8 & 49 & DIVISLAB & M & 0.209 & 0.202 & +3.4 \\
+2 & SBIN & H & 0.169 & 0.178 & $-$4.9 & 50 & GRASIM & M & 0.125 & 0.126 & $-$0.8 \\
+3 & INFY & H & 0.159 & 0.159 & $-$0.1 & 51 & BEL & M & 0.221 & 0.215 & +2.5 \\
+4 & ICICIBANK & H & 0.144 & 0.152 & $-$5.2 & 52 & AMBUJACEM & M & 0.167 & 0.161 & +3.3 \\
+5 & MARUTI & H & 0.225 & 0.221 & +1.9 & 53 & GAIL & M & 0.175 & 0.174 & +0.4 \\
+6 & TCS & H & 0.155 & 0.155 & +0.2 & 54 & RECLTD & M & 0.144 & 0.141 & +2.4 \\
+7 & AXISBANK & H & 0.161 & 0.154 & +4.4 & 55 & BRITANNIA & M & 0.224 & 0.213 & +4.7 \\
+8 & ITC & H & 0.325 & 0.314 & +3.3 & 56 & TVSMOTOR & M & 0.209 & 0.211 & $-$0.9 \\
+9 & TMPV & H & 0.221 & 0.218 & +1.3 & 57 & HDFCAMC & M & 0.194 & 0.189 & +2.3 \\
+10 & LT & H & 0.194 & 0.199 & $-$2.6 & 58 & PFC & M & 0.183 & 0.179 & +2.0 \\
+11 & TATASTEEL & H & 0.172 & 0.172 & $-$0.3 & 59 & APOLLOHOSP & M & 0.240 & 0.235 & +1.9 \\
+12 & HDFCBANK & H & 0.199 & 0.200 & $-$0.3 & 60 & GODREJCP & M & 0.235 & 0.233 & +1.0 \\
+13 & SUNPHARMA & H & 0.200 & 0.199 & +0.3 & 61 & PIDILITIND & M & 0.157 & 0.155 & +0.9 \\
+14 & HINDUNILVR & H & 0.267 & 0.267 & +0.0 & 62 & TATAPOWER & M & 0.187 & 0.187 & +0.0 \\
+15 & KOTAKBANK & H & 0.146 & 0.146 & +0.0 & 63 & INDIGO & M & 0.233 & 0.230 & +1.3 \\
+16 & ETERNAL & H & 0.265 & 0.256 & +3.5 & 64 & ZYDUSLIFE & L & 0.150 & 0.150 & +0.0 \\
+17 & BHARTIARTL & H & 0.163 & 0.168 & $-$2.9 & 65 & TATACONSUM & L & 0.191 & 0.188 & +1.5 \\
+18 & MM & H & 0.172 & 0.176 & $-$2.6 & 66 & BAJAJFINSV & L & 0.188 & 0.184 & +2.2 \\
+19 & BAJFINANCE & H & 0.178 & 0.178 & $-$0.1 & 67 & ADANIENT & L & 0.191 & 0.187 & +2.4 \\
+20 & ASIANPAINT & H & 0.298 & 0.296 & +0.5 & 68 & NESTLEIND & L & 0.194 & 0.188 & +3.2 \\
+21 & HINDALCO & H & 0.173 & 0.169 & +1.9 & 69 & BOSCHLTD & L & 0.146 & 0.142 & +2.7 \\
+22 & DRREDDY & H & 0.171 & 0.171 & +0.2 & 70 & EICHERMOT & L & 0.199 & 0.196 & +1.7 \\
+23 & BPCL & H & 0.137 & 0.137 & $-$0.7 & 71 & SBILIFE & L & 0.242 & 0.234 & +3.5 \\
+24 & ULTRACEMCO & H & 0.184 & 0.183 & +0.3 & 72 & SIEMENS & L & 0.217 & 0.214 & +1.8 \\
+25 & TECHM & H & 0.160 & 0.159 & +0.8 & 73 & UNIONBANK & L & 0.184 & 0.180 & +2.0 \\
+26 & ONGC & H & 0.192 & 0.196 & $-$2.1 & 74 & TORNTPHARM & L & 0.157 & 0.155 & +0.8 \\
+27 & VEDL & H & 0.217 & 0.214 & +1.4 & 75 & SHREECEM & L & 0.138 & 0.141 & $-$2.7 \\
+28 & COALINDIA & H & 0.156 & 0.156 & +0.0 & 76 & ADANIPOWER & L & 0.386 & 0.356 & +7.7 \\
+29 & HCLTECH & H & 0.203 & 0.207 & $-$2.1 & 77 & HINDZINC & L & 0.177 & 0.173 & +2.0 \\
+30 & JSWSTEEL & H & 0.217 & 0.216 & +0.5 & 78 & CUMMINSIND & L & 0.170 & 0.166 & +2.7 \\
+31 & BANKBARODA & H & 0.160 & 0.159 & +0.8 & 79 & IRFC & L & 0.205 & 0.202 & +1.5 \\
+32 & ADANIPORTS & H & 0.184 & 0.174 & +5.9 & 80 & LODHA & L & 0.212 & 0.172 & +19.2 \\
+33 & CIPLA & M & 0.259 & 0.264 & $-$1.8 & 81 & LTM & L & 0.179 & 0.178 & +0.5 \\
+34 & BAJAJ-AUTO & M & 0.178 & 0.180 & $-$0.9 & 82 & MAXHEALTH & L & 0.170 & 0.146 & +13.9 \\
+35 & POWERGRID & M & 0.173 & 0.167 & +3.6 & 83 & MAZDOCK & L & 0.237 & 0.231 & +2.2 \\
+36 & DLF & M & 0.155 & 0.153 & +1.8 & 84 & MUTHOOTFIN & L & 0.220 & 0.224 & $-$1.8 \\
+37 & PNB & M & 0.204 & 0.190 & +6.6 & 85 & ABB & L & 0.230 & 0.231 & $-$0.6 \\
+38 & TITAN & M & 0.214 & 0.205 & +4.2 & 86 & INDHOTEL & L & 0.164 & 0.172 & $-$4.9 \\
+39 & WIPRO & M & 0.181 & 0.182 & $-$1.0 & 87 & BAJAJHLDNG & L & 0.208 & 0.213 & $-$2.1 \\
+40 & JINDALSTEL & M & 0.151 & 0.154 & $-$2.0 & 88 & ADANIGREEN & L & 0.289 & 0.260 & +9.9 \\
+41 & HDFCLIFE & M & 0.225 & 0.221 & +1.6 & 89 & HAL & L & 0.228 & 0.226 & +0.8 \\
+42 & NTPC & M & 0.171 & 0.168 & +1.8 & 90 & CHOLAFIN & L & 0.199 & 0.192 & +3.3 \\
+43 & DMART & M & 0.253 & 0.261 & $-$3.0 & 91 & VBL & L & 0.216 & 0.209 & +3.4 \\
+44 & IOC & M & 0.157 & 0.154 & +2.2 & 92 & ADANIENSOL & L & 0.207 & 0.190 & +7.8 \\
+45 & CANBK & M & 0.170 & 0.171 & $-$0.2 & 93 & TRENT & L & 0.229 & 0.230 & $-$0.4 \\
+46 & SHRIRAMFIN & M & 0.203 & 0.197 & +3.3 & 94 & SOLARINDS & L & 0.189 & 0.190 & $-$0.0 \\
+47 & MOTHERSON & M & 0.188 & 0.188 & +0.3 & 95 & CGPOWER & L & 0.250 & 0.247 & +1.1 \\
+48 & UNITDSPR & M & 0.183 & 0.180 & +1.6 &  &  & & & &  \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape L = liquidity group (H/M/L). LSTM = HAR-RV-LSTM. Gain = \% reduction in QLIKE against log-HAR.}
+\end{table}

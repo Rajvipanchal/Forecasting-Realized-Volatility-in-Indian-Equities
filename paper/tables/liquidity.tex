@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Test QLIKE by liquidity group}
+\label{tab:liquidity}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Liquidity & Obs & HAR-RV & log-HAR & HAR-RV-LSTM & EGARCH-LSTM & Gain vs HAR (\%) & Gain vs log-HAR (\%) & DM $t$ \\
+\midrule
+High & 10,026 & 0.2260 & 0.1920 & \textbf{0.1915} & 0.2477 & 15.3 & 0.3 & 0.38 \\
+Medium & 9,716 & 0.2192 & 0.1925 & \textbf{0.1898} & 0.2556 & 13.4 & 1.4 & 2.43 \\
+Low & 10,032 & 0.2403 & 0.2050 & \textbf{0.1989} & 0.3087 & 17.2 & 3.0 & 3.96 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape Gain = percentage reduction in QLIKE of HAR-RV-LSTM. DM $t$: HAR-RV-LSTM against log-HAR within the group (positive = LSTM better). Bold = best model in the group.}
+\end{table}

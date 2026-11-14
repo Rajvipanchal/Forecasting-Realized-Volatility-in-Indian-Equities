@@ -1,0 +1,10 @@
+# Versions used for the results in the paper (Python 3.13)
+numpy>=2.0
+pandas>=2.2
+pyarrow>=15
+scipy>=1.13
+statsmodels>=0.14
+arch>=7.0
+torch>=2.4
+matplotlib>=3.8
+jupyter

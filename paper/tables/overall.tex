@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\caption{Forecast accuracy, validation and test periods}
+\label{tab:overall}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lrrrrrr}
+\toprule
+Model & Valid QLIKE & Test QLIKE & Test MAE ($\times10^{4}$) & Test MSE ($\times10^{8}$) & vs HAR-RV (\%) & vs log-HAR (\%) \\
+\midrule
+HAR-RV & 0.2606 & 0.2286 & 1.656 & 9.303 & -- & +16.3 \\
+log-HAR & 0.2298 & 0.1965 & 1.432 & 8.597 & $-$14.0 & -- \\
+HAR-RV-LSTM & 0.2258 & \textbf{0.1935} & \textbf{1.401} & \textbf{8.543} & $-$15.4 & $-$1.6 \\
+EGARCH-LSTM & 0.2703 & 0.2709 & 2.034 & 11.856 & +18.5 & +37.8 \\
+\midrule
+HAR-EGARCH-LSTM & 0.2184 & 0.1931 & 1.444 & 8.703 & $-$15.5 & $-$1.7 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape Test: 29,774 stock-days, 95 stocks, 1 Jan 2025 -- 9 Apr 2026; validation: 46,599 stock-days, 2023--2024. Last two columns: change in test QLIKE (negative = better). Bold = lowest test loss among the four main models. HAR-EGARCH-LSTM is an ablation.}
+\end{table}

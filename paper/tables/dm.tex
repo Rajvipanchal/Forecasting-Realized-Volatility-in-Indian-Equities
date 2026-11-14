@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Diebold--Mariano tests on the test period (A vs B)}
+\label{tab:dm}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lrrrcrr}
+\toprule
+Comparison & QLIKE diff (A$-$B) & $t$ & Holm $p$ & 95\% block-bootstrap CI & MAE $t$ & MAE Holm $p$ \\
+\midrule
+HAR-RV vs log-HAR & 0.0320 & 6.54 & $<$0.001 & [0.0235, 0.0417] & 11.02 & $<$0.001 \\
+HAR-RV vs HAR-RV-LSTM & 0.0351 & 6.18 & $<$0.001 & [0.0250, 0.0465] & 10.11 & $<$0.001 \\
+log-HAR vs HAR-RV-LSTM & 0.0031 & 2.80 & 0.010 & [0.0011, 0.0054] & 4.22 & $<$0.001 \\
+HAR-RV vs EGARCH-LSTM & $-$0.0425 & $-$12.73 & $<$0.001 & [$-$0.0483, $-$0.0359] & $-$9.90 & $<$0.001 \\
+log-HAR vs EGARCH-LSTM & $-$0.0745 & $-$10.39 & $<$0.001 & [$-$0.0885, $-$0.0611] & $-$14.90 & $<$0.001 \\
+EGARCH-LSTM vs HAR-RV-LSTM & 0.0776 & 9.89 & $<$0.001 & [0.0631, 0.0929] & 14.92 & $<$0.001 \\
+HAR-RV-LSTM vs HAR-EGARCH-LSTM & 0.0003 & 0.24 & 0.810 & [$-$0.0016, 0.0027] & $-$5.42 & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape Positive difference / $t$ = model B has lower loss. Loss differences averaged across stocks per day (314 days), Newey--West (5 lags) standard errors; Holm adjustment over the seven comparisons per loss. Bootstrap: 5-day blocks, 2,000 draws.}
+\end{table}

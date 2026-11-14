@@ -1,0 +1,33 @@
+{
+ "test_obs": 29774,
+ "test_stocks": 95,
+ "test_days": 314,
+ "valid_obs": 46599,
+ "test_qlike": {
+  "HAR-RV": 0.2286,
+  "log-HAR": 0.1965,
+  "HAR-RV-LSTM": 0.1935,
+  "EGARCH-LSTM": 0.2709,
+  "HAR-EGARCH-LSTM": 0.1931
+ },
+ "valid_qlike": {
+  "HAR-RV": 0.2606,
+  "log-HAR": 0.2298,
+  "HAR-RV-LSTM": 0.2258,
+  "EGARCH-LSTM": 0.2703,
+  "HAR-EGARCH-LSTM": 0.2184
+ },
+ "win_rates": {
+  "share beating HAR-RV": {
+   "log-HAR": 1.0,
+   "HAR-RV-LSTM": 1.0,
+   "EGARCH-LSTM": 0.147
+  },
+  "share beating log-HAR": {
+   "log-HAR": NaN,
+   "HAR-RV-LSTM": 0.705,
+   "EGARCH-LSTM": 0.0
+  }
+ },
+ "spearman_gain_liquidity": 0.295
+}

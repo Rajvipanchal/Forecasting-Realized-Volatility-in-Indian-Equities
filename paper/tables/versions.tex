@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Test QLIKE in the first version of the project and after the corrections}
+\label{tab:versions}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lrrrr}
+\toprule
+Model & First version & Corrected & vs HAR-RV, first (\%) & vs HAR-RV, corrected (\%) \\
+\midrule
+HAR-RV & 0.4230 & 0.2286 & -- & -- \\
+HAR-RV-LSTM & 0.3421 & 0.1935 & $-$19.1 & $-$15.4 \\
+EGARCH-LSTM & 0.3950 & 0.2709 & $-$6.6 & +18.5 \\
+log-HAR & -- & 0.1965 & -- & $-$14.0 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\par\smallskip\parbox{0.95\textwidth}{\footnotesize\itshape First version: 29,830 stock-days, uncleaned RV with overnight gaps, EGARCH fitted on the full sample, liquidity groups from the mis-scaled slope (only 42\% of stocks keep the same group after the correction). The two columns are not on identical samples; compare the relative columns.}
+\end{table}

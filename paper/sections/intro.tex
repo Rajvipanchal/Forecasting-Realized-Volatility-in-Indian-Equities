@@ -1,0 +1,37 @@
+\section{Introduction}
+
+Volatility is the main input to option pricing, margin setting, Value-at-Risk and position sizing,
+but it cannot be observed directly. With intraday data it can be measured: the sum of squared 5-minute
+returns gives a day's realized variance (RV), and forecasting RV has become the standard way to forecast
+volatility \citep{andersen2003}. The benchmark is the HAR model of \citet{corsi2009}, a linear
+regression of tomorrow's RV on its daily, weekly and monthly averages. It is simple and hard to beat.
+
+Neural networks, in particular LSTMs, are often reported to beat HAR, but the gains are uneven and
+the evidence comes mostly from liquid US stocks \citep{bucci2020,rahimikia2020,christensen2023}.
+In less liquid stocks RV is a noisier measurement, which points two ways. A flexible model may find more
+structure to exploit there (H1), or it may mostly fit noise and gain only in liquid stocks (H2).
+Indian large caps span a wide range of liquidity --- average daily turnover in our sample runs from
+about Rs~9 crore to Rs~1,360 crore --- so they are a natural place to test this.
+
+\needspace{8\baselineskip}
+We ask four questions:
+\begin{enumerate}
+\item Does an LSTM fed with HAR inputs (HAR-RV-LSTM) forecast next-day RV better than HAR-RV and log-HAR?
+\item Does an LSTM fed with EGARCH features from daily returns do as well, and do EGARCH features add
+anything to the HAR inputs?
+\item Does the gain depend on the stock's liquidity (H1 against H2)?
+\item Does it depend on market conditions, and is it stable over time and across training runs?
+\end{enumerate}
+
+\textbf{Main findings.} HAR-RV-LSTM is the most accurate model on every loss. Against classic HAR-RV it
+reduces QLIKE by 15.4\%; against log-HAR, the fairer benchmark, by 1.6\%. Both differences are
+significant, every training seed beats log-HAR, and the gain rises from 0.3\% in the most liquid stocks to
+3.0\% in the least liquid, which supports H1. EGARCH-LSTM is worse than plain HAR-RV, and EGARCH features
+add nothing to HAR-RV-LSTM. The gain is concentrated on calm and normal days.
+
+\textbf{Contributions.} (i) A cleaned, reproducible 5-minute panel for 95 NSE stocks with documented
+rules for pre-listing rows, bad prints and corporate actions. (ii) A liquidity-conditioned comparison
+of econometric and deep-learning volatility models on an emerging market, with liquidity groups formed
+only from training-period data. (iii) An honest account of how three implementation errors in our
+first version --- uncleaned RV, a mis-scaled liquidity measure and EGARCH look-ahead --- had inflated
+the apparent advantage of the neural models (Section~\ref{sec:versions}).
